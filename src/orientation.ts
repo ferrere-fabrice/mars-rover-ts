@@ -14,4 +14,11 @@ export class Orientation {
 
         return Orientation.Est;
     }
+
+    toString(): string {
+        if(this == Orientation.Est) return "Est";
+        if(this == Orientation.Sud) return "Sud";
+        if(this == Orientation.Ouest) return "Ouest";
+        return "Nord";
+    }
 }
