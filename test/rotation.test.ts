@@ -1,5 +1,6 @@
-import {Rover} from "../src/rover";
 import {Orientation} from "../src/orientation";
+import {Position} from "../src/position";
+import {RoverBuilder} from "./utilities/rover.builder";
 const each = require("jest-each").default;
 
 describe('FEATURE Rotation', () => {
@@ -16,7 +17,7 @@ describe('FEATURE Rotation', () => {
         .it('ETANT DONNE un rover orienté %s ' +
         'QUAND il tourne à droite %s fois' +
         'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
-        const rover = new Rover(initiale);
+        const rover = new RoverBuilder().AyantPourOrientation(initiale).Build();
 
         let orientationRover: Orientation = initiale;
         for (let rotations=0; rotations<nombreFois; rotations++){
@@ -39,7 +40,7 @@ describe('FEATURE Rotation', () => {
         .it('ETANT DONNE un rover orienté %s ' +
             'QUAND il tourne à gauche %s fois' +
             'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
-            const rover = new Rover(initiale);
+            const rover = new RoverBuilder().AyantPourOrientation(initiale).Build();
 
             let orientationRover: Orientation = initiale;
             for (let rotations=0; rotations<nombreFois; rotations++){
@@ -48,4 +49,18 @@ describe('FEATURE Rotation', () => {
 
             expect(orientationRover).toBe(finale);
         });
+
+    test('ETANT DONNE un rover orienté Nord ' +
+        'QUAND il avance ' +
+        'ALORS la composante latitudinale de sa position augmente de 1', () => {
+        const positionOriginale = new Position(0, 0)
+        const rover = new RoverBuilder()
+            .AyantPourOrientation(Orientation.Nord)
+            .AyantPourPosition(positionOriginale)
+            .Build();
+
+        const positionRover = rover.Avancer();
+
+        expect(positionRover).toStrictEqual(positionOriginale.IncrémenterLatitude());
+    });
 });
