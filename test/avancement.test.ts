@@ -51,4 +51,52 @@ describe('FEATURE Avancement', () => {
 
         expect(positionRenvoyée).toStrictEqual(positionAttendue);
     });
+
+    each([
+        [1],
+        [2]
+    ]).it('ETANT DONNE un rover orienté Est ' +
+        'QUAND il avance %s fois ' +
+        'ALORS la composante longitudinale de sa position augmente d\'autant',
+        (nombreMouvements: number) => {
+            const positionOriginale = new Position(0, 0)
+            const rover = new RoverBuilder()
+                .AyantPourOrientation(Orientation.Est)
+                .AyantPourPosition(positionOriginale)
+                .Build();
+
+            let positionAttendue = positionOriginale;
+            let positionRenvoyée = positionOriginale;
+
+            for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
+                positionAttendue = positionAttendue.IncrémenterLongitude();
+                positionRenvoyée = rover.Avancer();
+            }
+
+            expect(positionRenvoyée).toStrictEqual(positionAttendue);
+        });
+
+    each([
+        [1],
+        [2]
+    ]).it('ETANT DONNE un rover orienté Ouest ' +
+        'QUAND il avance %s fois ' +
+        'ALORS la composante longitudinale de sa position diminue d\'autant',
+        (nombreMouvements: number) => {
+            const positionOriginale = new Position(0, 0)
+            const rover = new RoverBuilder()
+                .AyantPourOrientation(Orientation.Ouest)
+                .AyantPourPosition(positionOriginale)
+                .Build();
+
+            let positionAttendue = positionOriginale;
+            let positionRenvoyée = positionOriginale;
+
+            for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
+                positionAttendue = positionAttendue.DécrémenterLongitude();
+                positionRenvoyée = rover.Avancer();
+            }
+
+            expect(positionRenvoyée).toStrictEqual(positionAttendue);
+        });
 });

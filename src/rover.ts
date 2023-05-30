@@ -22,9 +22,13 @@ export class Rover {
     Avancer() : Position {
         if(this._orientation == Orientation.Sud)
             this._position = this._position.DécrémenterLatitude();
+        else if(this._orientation == Orientation.Est)
+            this._position = this._position.IncrémenterLongitude();
+        else if(this._orientation == Orientation.Ouest)
+            this._position = this._position.DécrémenterLongitude();
         else
             this._position = this._position.IncrémenterLatitude();
-        
+
         return this._position;
     }
 }
