@@ -8,6 +8,10 @@ export class Orientation {
     }
 
     RotationHoraire() : Orientation {
-        return this == Orientation.Est ? Orientation.Sud : Orientation.Est;
+        if(this == Orientation.Est) return Orientation.Sud;
+        if(this == Orientation.Sud) return Orientation.Ouest;
+
+
+        return Orientation.Est;
     }
 }
