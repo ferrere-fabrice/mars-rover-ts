@@ -3,6 +3,7 @@ import {Position} from "./position.ts";
 
 export class Rover {
     private _orientation: Orientation;
+    private _position: Position = new Position(0, 0);
 
     constructor(orientation: Orientation, _: Position) {
         this._orientation = orientation;
@@ -19,7 +20,11 @@ export class Rover {
     }
 
     Avancer() : Position {
-        if(this._orientation == Orientation.Sud) return new Position(-1, 0);
-        return new Position(1, 0);
+        if(this._orientation == Orientation.Sud)
+            this._position = this._position.DécrémenterLatitude();
+        else
+            this._position = this._position.IncrémenterLatitude();
+        
+        return this._position;
     }
 }
