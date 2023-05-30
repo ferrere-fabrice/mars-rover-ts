@@ -7,6 +7,7 @@ describe('FEATURE Rotation', () => {
         [Orientation.Nord, Orientation.Est],
         [Orientation.Est, Orientation.Sud],
         [Orientation.Sud, Orientation.Ouest],
+        [Orientation.Ouest, Orientation.Nord],
     ])
         .it('ETANT DONNE un rover orienté %s ' +
         'QUAND il tourne à droite ' +
