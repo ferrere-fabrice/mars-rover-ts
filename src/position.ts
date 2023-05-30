@@ -7,11 +7,11 @@ export class Position {
     }
 
     IncrémenterLatitude() : Position {
-        return new Position(this._latitude + 1, 0);
+        return new Position(this._latitude + 1, this._longitude);
     }
 
     DécrémenterLatitude() : Position {
-        return new Position(this._latitude - 1, 0);
+        return new Position(this._latitude - 1, this._longitude);
     }
 
     IncrémenterLongitude() : Position {

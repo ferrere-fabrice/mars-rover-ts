@@ -3,10 +3,11 @@ import {Position} from "./position.ts";
 
 export class Rover {
     private _orientation: Orientation;
-    private _position: Position = new Position(0, 0);
+    private _position: Position;
 
-    constructor(orientation: Orientation, _: Position) {
+    constructor(orientation: Orientation, position: Position) {
         this._orientation = orientation;
+        this._position = position;
     }
 
     TourneADroite() : Orientation {
@@ -29,6 +30,11 @@ export class Rover {
         else
             this._position = this._position.IncrémenterLatitude();
 
+        return this._position;
+    }
+
+    Reculer(): Position {
+        this._position = this._position.DécrémenterLatitude();
         return this._position;
     }
 }
