@@ -1,10 +1,12 @@
 export class Orientation {
-    static Nord: Orientation = new Orientation();
-    static Sud: Orientation = new Orientation();
-    static Est: Orientation = new Orientation();
-    static Ouest: Orientation = new Orientation();
+    static Nord: Orientation = new Orientation("Nord");
+    static Sud: Orientation = new Orientation("Sud");
+    static Est: Orientation = new Orientation("Est");
+    static Ouest: Orientation = new Orientation("Ouest");
+    private readonly _representation: string;
 
-    private constructor() {
+    private constructor(representation: string) {
+        this._representation = representation;
     }
 
     RotationHoraire() : Orientation {
@@ -15,9 +17,6 @@ export class Orientation {
     }
 
     toString(): string {
-        if(this == Orientation.Est) return "Est";
-        if(this == Orientation.Sud) return "Sud";
-        if(this == Orientation.Ouest) return "Ouest";
-        return "Nord";
+        return this._representation;
     }
 }
