@@ -1,10 +1,12 @@
 import {Orientation} from "./orientation.ts";
 
 export class Rover {
-    constructor(_: Orientation) {
+    private _orientation: Orientation;
+    constructor(orientation: Orientation) {
+        this._orientation = orientation;
     }
 
     TourneADroite() : Orientation {
-        return Orientation.Est;
+        return this._orientation.RotationHoraire();
     }
 }

@@ -11,5 +11,12 @@ describe('FEATURE Rotation', () => {
         expect(orientationRover).toBe(Orientation.Est);
     });
 
-    
+    test('ETANT DONNE un rover orienté Est ' +
+        'QUAND il tourne à droite ' +
+        'ALORS son orientation est Sud', () => {
+        const rover = new Rover(Orientation.Est);
+        const orientationRover = rover.TourneADroite();
+
+        expect(orientationRover).toBe(Orientation.Sud);
+    });
 });
