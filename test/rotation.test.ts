@@ -63,4 +63,18 @@ describe('FEATURE Rotation', () => {
 
         expect(positionRover).toStrictEqual(positionOriginale.IncrémenterLatitude());
     });
+
+    test('ETANT DONNE un rover orienté Sud ' +
+        'QUAND il avance ' +
+        'ALORS la composante latitudinale de sa position diminue de 1', () => {
+        const positionOriginale = new Position(0, 0)
+        const rover = new RoverBuilder()
+            .AyantPourOrientation(Orientation.Sud)
+            .AyantPourPosition(positionOriginale)
+            .Build();
+
+        const positionRover = rover.Avancer();
+
+        expect(positionRover).toStrictEqual(positionOriginale.DécrémenterLatitude());
+    });
 });

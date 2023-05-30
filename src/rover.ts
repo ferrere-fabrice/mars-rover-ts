@@ -19,6 +19,7 @@ export class Rover {
     }
 
     Avancer() : Position {
+        if(this._orientation == Orientation.Sud) return new Position(-1, 0);
         return new Position(1, 0);
     }
 }

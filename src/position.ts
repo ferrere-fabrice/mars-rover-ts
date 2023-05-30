@@ -7,4 +7,8 @@ export class Position {
     IncrémenterLatitude() : Position {
         return new Position(this._latitude + 1, 0);
     }
+
+    DécrémenterLatitude() {
+        return new Position(this._latitude - 1, 0);
+    }
 }
