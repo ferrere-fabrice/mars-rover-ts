@@ -10,4 +10,9 @@ export class Rover {
         this._orientation = this._orientation.RotationHoraire();
         return this._orientation;
     }
+
+    TourneAGauche(): Orientation {
+        this._orientation = this._orientation.RotationAntihoraire();
+        return this._orientation;
+    }
 }

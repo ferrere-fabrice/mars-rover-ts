@@ -16,6 +16,13 @@ export class Orientation {
         return Orientation.Est;
     }
 
+    RotationAntihoraire() : Orientation {
+        if(this == Orientation.Est) return Orientation.Nord;
+        if(this == Orientation.Sud) return Orientation.Est;
+        if(this == Orientation.Ouest) return Orientation.Sud;
+        return Orientation.Ouest;
+    }
+
     toString(): string {
         return this._representation;
     }
