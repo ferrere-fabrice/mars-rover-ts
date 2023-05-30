@@ -4,16 +4,24 @@ const each = require("jest-each").default;
 
 describe('FEATURE Rotation', () => {
     each([
-        [Orientation.Nord, Orientation.Est],
-        [Orientation.Est, Orientation.Sud],
-        [Orientation.Sud, Orientation.Ouest],
-        [Orientation.Ouest, Orientation.Nord],
+        [Orientation.Nord, 1, Orientation.Est],
+        [Orientation.Est, 1, Orientation.Sud],
+        [Orientation.Sud, 1, Orientation.Ouest],
+        [Orientation.Ouest, 1, Orientation.Nord],
+        [Orientation.Nord, 2, Orientation.Sud],
+        [Orientation.Est, 2, Orientation.Ouest],
+        [Orientation.Sud, 2, Orientation.Nord],
+        [Orientation.Ouest, 2, Orientation.Est],
     ])
         .it('ETANT DONNE un rover orienté %s ' +
-        'QUAND il tourne à droite ' +
-        'ALORS son orientation est %s', (initiale: Orientation, finale: Orientation) => {
+        'QUAND il tourne à droite %s fois' +
+        'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
         const rover = new Rover(initiale);
-        const orientationRover = rover.TourneADroite();
+
+        let orientationRover: Orientation = initiale;
+        for (let rotations=0; rotations<nombreFois; rotations++){
+            orientationRover = rover.TourneADroite();
+        }
 
         expect(orientationRover).toBe(finale);
     });

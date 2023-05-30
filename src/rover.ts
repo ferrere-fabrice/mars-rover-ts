@@ -7,6 +7,7 @@ export class Rover {
     }
 
     TourneADroite() : Orientation {
-        return this._orientation.RotationHoraire();
+        this._orientation = this._orientation.RotationHoraire();
+        return this._orientation;
     }
 }
