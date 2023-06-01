@@ -1,5 +1,5 @@
-import {Orientation} from "./orientation.ts";
-import {Position} from "./position.ts";
+import {Orientation} from "./topologie/orientation.ts";
+import {Position} from "./geometrie/position.ts";
 
 export class Rover {
     private _orientation: Orientation;

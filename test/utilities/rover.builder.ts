@@ -1,6 +1,6 @@
 import {Rover} from "../../src/rover";
-import {Orientation} from "../../src/orientation";
-import {Position} from "../../src/position";
+import {Orientation} from "../../src/topologie/orientation";
+import {Position} from "../../src/geometrie/position";
 import {PositionBuilder} from "./position.builder";
 
 export class RoverBuilder {

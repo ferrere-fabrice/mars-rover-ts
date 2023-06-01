@@ -1,4 +1,4 @@
-import {Orientation} from "../src/orientation";
+import {Orientation} from "../src/topologie/orientation";
 import {RoverBuilder} from "./utilities/rover.builder";
 const each = require("jest-each").default;
 

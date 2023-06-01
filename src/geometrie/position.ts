@@ -1,4 +1,4 @@
-import {SystèmeCoordonnées} from "./systèmeCoordonnées.interface.ts";
+import {SystèmeCoordonnées} from "../topologie/systèmeCoordonnées.interface.ts";
 import {Point} from "./point.ts";
 
 export class Position {

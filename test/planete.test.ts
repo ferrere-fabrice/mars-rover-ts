@@ -1,10 +1,10 @@
-import {Position} from "../src/position";
+import {Position} from "../src/geometrie/position";
 import {RoverBuilder} from "./utilities/rover.builder";
-import {PlanèteToroïdale} from "../src/planeteToroïdale";
+import {PlanèteToroïdale} from "../src/topologie/planeteToroïdale";
 import {CartesianData} from "./utilities/cartesianData";
-import {Orientation} from "../src/orientation";
+import {Orientation} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
-import {Point} from "../src/point";
+import {Point} from "../src/geometrie/point";
 const each = require("jest-each").default;
 
 const taillesPlanètes = [1, 2, 10];

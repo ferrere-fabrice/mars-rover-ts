@@ -1,4 +1,4 @@
-import {Orientation} from "../src/orientation";
+import {Orientation} from "../src/topologie/orientation";
 import {RoverBuilder} from "./utilities/rover.builder";
 import {CartesianData} from "./utilities/cartesianData";
 import {PositionBuilder} from "./utilities/position.builder";

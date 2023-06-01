@@ -1,5 +1,5 @@
 import {SystèmeCoordonnées} from "./systèmeCoordonnées.interface.ts";
-import {Point} from "./point.ts";
+import {Point} from "../geometrie/point.ts";
 
 export class PlanèteToroïdale implements SystèmeCoordonnées {
     private readonly _taille: number;

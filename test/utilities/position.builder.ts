@@ -1,6 +1,6 @@
-import {Position} from "../../src/position";
+import {Position} from "../../src/geometrie/position";
 import {PlanèteInfinie} from "./planèteInfinie";
-import {Point} from "../../src/point";
+import {Point} from "../../src/geometrie/point";
 
 export class PositionBuilder {
     static Origine(): Position {
