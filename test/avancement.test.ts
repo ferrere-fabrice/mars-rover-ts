@@ -1,21 +1,25 @@
 import {Orientation} from "../src/orientation";
 import {Position} from "../src/position";
 import {RoverBuilder} from "./utilities/rover.builder";
+import {CartesianData} from "./utilities/cartesianData";
 const each = require("jest-each").default;
 
+const orientations = [Orientation.Nord, Orientation.Sud, Orientation.Est, Orientation.Ouest];
+const latitudesDépart = [0, 1];
+const longitudesDépart = [0, 1];
+
 describe('FEATURE Avancement', () => {
-    each([
-        [0, 0],
-        [0, 1],
-        [1, 0]
-    ]).it('ETANT DONNE un rover démarrant en %s, %s ' +
+    each(
+        new CartesianData(latitudesDépart, longitudesDépart, orientations).toTestCases()
+    ).it('ETANT DONNE un rover démarrant en %s, %s, orienté %s ' +
         'QUAND il avance puis recule ' +
         'ALORS sa nouvelle position est sa position de départ',
-        (latitudeDépart: number, longitudeDépart: number) => {
+        (latitudeDépart: number, longitudeDépart: number, orientation: Orientation) => {
 
             const positionOriginale = new Position(latitudeDépart, longitudeDépart)
             const rover = new RoverBuilder()
                 .AyantPourPosition(positionOriginale)
+                .AyantPourOrientation(orientation)
                 .Build();
 
             rover.Avancer();
@@ -23,6 +27,7 @@ describe('FEATURE Avancement', () => {
 
             expect(positionFinale).toStrictEqual(positionOriginale);
     });
+
 
     each([
         [1],

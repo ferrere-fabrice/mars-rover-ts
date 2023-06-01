@@ -34,7 +34,15 @@ export class Rover {
     }
 
     Reculer(): Position {
-        this._position = this._position.DécrémenterLatitude();
+        if(this._orientation == Orientation.Sud)
+            this._position = this._position.IncrémenterLatitude();
+        else if(this._orientation == Orientation.Est)
+            this._position = this._position.DécrémenterLongitude();
+        else if(this._orientation == Orientation.Ouest)
+            this._position = this._position.IncrémenterLongitude();
+        else
+            this._position = this._position.DécrémenterLatitude();
+
         return this._position;
     }
 }
