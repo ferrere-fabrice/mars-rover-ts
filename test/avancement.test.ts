@@ -2,16 +2,16 @@ import {Orientation} from "../src/orientation";
 import {RoverBuilder} from "./utilities/rover.builder";
 import {CartesianData} from "./utilities/cartesianData";
 import {PositionBuilder} from "./utilities/position.builder";
+import {TestPrimitives} from "./utilities/testPrimitives";
 const each = require("jest-each").default;
 
-const orientations = [Orientation.Nord, Orientation.Sud, Orientation.Est, Orientation.Ouest];
 const latitudesDépart = [0, 1];
 const longitudesDépart = [0, 1];
 const nombreMouvements = [1, 2];
 
 describe('FEATURE Avancement', () => {
     each(
-        new CartesianData(latitudesDépart, longitudesDépart, orientations).toTestCases()
+        new CartesianData(latitudesDépart, longitudesDépart, TestPrimitives.Orientations).toTestCases()
     ).it('ETANT DONNE un rover démarrant en %s, %s, orienté %s ' +
         'QUAND il avance puis recule ' +
         'ALORS sa nouvelle position est sa position de départ',

@@ -10,6 +10,6 @@ export class PlanèteToroïdale implements SystèmeCoordonnées {
     }
 
     Normaliser(position: Position): Position {
-        return position.Modulo(this._taille);
+        return position.Modulo(this._taille).Modulo(-this._taille);
     }
 }

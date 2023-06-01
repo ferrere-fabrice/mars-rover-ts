@@ -6,8 +6,8 @@ export class Position {
     private readonly _systèmeCoordonnées: SystèmeCoordonnées;
 
     constructor(latitude: number, longitude: number, systèmeCoordonnées: SystèmeCoordonnées) {
-        this._latitude = latitude;
-        this._longitude = longitude;
+        this._latitude = latitude == -0 ? 0 : latitude;
+        this._longitude = longitude == -0 ? 0 : longitude;
         this._systèmeCoordonnées = systèmeCoordonnées;
     }
 
@@ -16,18 +16,21 @@ export class Position {
     }
 
     DécrémenterLatitude() : Position {
-        return new Position(this._latitude - 1, this._longitude, this._systèmeCoordonnées);
+        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude - 1, this._longitude, this._systèmeCoordonnées));
     }
 
     IncrémenterLongitude() : Position {
-        return new Position(this._latitude, this._longitude + 1, this._systèmeCoordonnées);
+        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude, this._longitude + 1, this._systèmeCoordonnées));
     }
 
     DécrémenterLongitude() : Position {
-        return new Position(this._latitude, this._longitude - 1, this._systèmeCoordonnées);
+        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude, this._longitude - 1, this._systèmeCoordonnées));
     }
 
     Modulo(modulo: number) {
-        return new Position(this._latitude % modulo, this._longitude % modulo, this._systèmeCoordonnées);
+        return new Position(
+            this._latitude % modulo,
+            this._longitude % modulo,
+            this._systèmeCoordonnées);
     }
 }
