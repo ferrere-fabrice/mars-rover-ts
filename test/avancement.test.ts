@@ -7,6 +7,7 @@ const each = require("jest-each").default;
 const orientations = [Orientation.Nord, Orientation.Sud, Orientation.Est, Orientation.Ouest];
 const latitudesDépart = [0, 1];
 const longitudesDépart = [0, 1];
+const nombreMouvements = [1, 2];
 
 describe('FEATURE Avancement', () => {
     each(
@@ -29,10 +30,8 @@ describe('FEATURE Avancement', () => {
     });
 
 
-    each([
-        [1],
-        [2],
-    ]).it('ETANT DONNE un rover orienté Nord ' +
+    each(new CartesianData(nombreMouvements).toTestCases())
+        .it('ETANT DONNE un rover orienté Nord ' +
         'QUAND il avance %s fois ' +
         'ALORS la composante latitudinale de sa position augmente d\'autant',
         (nombreMouvements: number) => {
@@ -53,10 +52,8 @@ describe('FEATURE Avancement', () => {
             expect(positionRenvoyée).toStrictEqual(positionAttendue);
         });
 
-    each([
-        [1],
-        [2]
-    ]).it('ETANT DONNE un rover orienté Sud ' +
+    each(new CartesianData(nombreMouvements).toTestCases())
+        .it('ETANT DONNE un rover orienté Sud ' +
         'QUAND il avance %s fois ' +
         'ALORS la composante latitudinale de sa position diminue d\'autant',
         (nombreMouvements: number) => {
@@ -77,10 +74,8 @@ describe('FEATURE Avancement', () => {
         expect(positionRenvoyée).toStrictEqual(positionAttendue);
     });
 
-    each([
-        [1],
-        [2]
-    ]).it('ETANT DONNE un rover orienté Est ' +
+    each(new CartesianData(nombreMouvements).toTestCases())
+        .it('ETANT DONNE un rover orienté Est ' +
         'QUAND il avance %s fois ' +
         'ALORS la composante longitudinale de sa position augmente d\'autant',
         (nombreMouvements: number) => {
@@ -101,10 +96,8 @@ describe('FEATURE Avancement', () => {
             expect(positionRenvoyée).toStrictEqual(positionAttendue);
         });
 
-    each([
-        [1],
-        [2]
-    ]).it('ETANT DONNE un rover orienté Ouest ' +
+    each(new CartesianData(nombreMouvements).toTestCases())
+        .it('ETANT DONNE un rover orienté Ouest ' +
         'QUAND il avance %s fois ' +
         'ALORS la composante longitudinale de sa position diminue d\'autant',
         (nombreMouvements: number) => {
