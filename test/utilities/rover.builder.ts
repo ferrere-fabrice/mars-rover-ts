@@ -1,11 +1,12 @@
 import {Rover} from "../../src/rover";
 import {Orientation} from "../../src/orientation";
 import {Position} from "../../src/position";
+import {PositionBuilder} from "./position.builder";
 
 export class RoverBuilder {
 
     private _orientation: Orientation = Orientation.Nord;
-    private _position: Position = new Position(0, 0);
+    private _position: Position = PositionBuilder.Origine();
 
     AyantPourOrientation(orientation: Orientation): RoverBuilder{
         this._orientation = orientation;

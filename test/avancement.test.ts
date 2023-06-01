@@ -1,7 +1,7 @@
 import {Orientation} from "../src/orientation";
-import {Position} from "../src/position";
 import {RoverBuilder} from "./utilities/rover.builder";
 import {CartesianData} from "./utilities/cartesianData";
+import {PositionBuilder} from "./utilities/position.builder";
 const each = require("jest-each").default;
 
 const orientations = [Orientation.Nord, Orientation.Sud, Orientation.Est, Orientation.Ouest];
@@ -17,7 +17,10 @@ describe('FEATURE Avancement', () => {
         'ALORS sa nouvelle position est sa position de départ',
         (latitudeDépart: number, longitudeDépart: number, orientation: Orientation) => {
 
-            const positionOriginale = new Position(latitudeDépart, longitudeDépart)
+            const positionOriginale = new PositionBuilder()
+                .AyantPourCoordonnées(latitudeDépart, longitudeDépart)
+                .Build();
+
             const rover = new RoverBuilder()
                 .AyantPourPosition(positionOriginale)
                 .AyantPourOrientation(orientation)
@@ -35,7 +38,7 @@ describe('FEATURE Avancement', () => {
         'QUAND il avance %s fois ' +
         'ALORS la composante latitudinale de sa position augmente d\'autant',
         (nombreMouvements: number) => {
-            const positionOriginale = new Position(0, 0)
+            const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
                 .AyantPourOrientation(Orientation.Nord)
                 .AyantPourPosition(positionOriginale)
@@ -57,11 +60,11 @@ describe('FEATURE Avancement', () => {
         'QUAND il avance %s fois ' +
         'ALORS la composante latitudinale de sa position diminue d\'autant',
         (nombreMouvements: number) => {
-        const positionOriginale = new Position(0, 0)
-        const rover = new RoverBuilder()
-            .AyantPourOrientation(Orientation.Sud)
-            .AyantPourPosition(positionOriginale)
-            .Build();
+            const positionOriginale = PositionBuilder.Origine();
+            const rover = new RoverBuilder()
+                .AyantPourOrientation(Orientation.Sud)
+                .AyantPourPosition(positionOriginale)
+                .Build();
 
             let positionAttendue = positionOriginale;
             let positionRenvoyée = positionOriginale;
@@ -79,7 +82,7 @@ describe('FEATURE Avancement', () => {
         'QUAND il avance %s fois ' +
         'ALORS la composante longitudinale de sa position augmente d\'autant',
         (nombreMouvements: number) => {
-            const positionOriginale = new Position(0, 0)
+            const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
                 .AyantPourOrientation(Orientation.Est)
                 .AyantPourPosition(positionOriginale)
@@ -101,7 +104,7 @@ describe('FEATURE Avancement', () => {
         'QUAND il avance %s fois ' +
         'ALORS la composante longitudinale de sa position diminue d\'autant',
         (nombreMouvements: number) => {
-            const positionOriginale = new Position(0, 0)
+            const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
                 .AyantPourOrientation(Orientation.Ouest)
                 .AyantPourPosition(positionOriginale)
