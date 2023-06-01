@@ -1,8 +1,8 @@
 import {SystèmeCoordonnées} from "../../src/systèmeCoordonnées.interface";
-import {Position} from "../../src/position";
+import {Point} from "../../src/point";
 
 export class PlanèteInfinie implements SystèmeCoordonnées {
-    Normaliser(position: Position): Position {
-        return position;
+    Normaliser(point: Point): Point {
+        return point;
     }
 }

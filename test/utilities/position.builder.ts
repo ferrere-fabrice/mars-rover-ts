@@ -1,5 +1,6 @@
 import {Position} from "../../src/position";
 import {PlanèteInfinie} from "./planèteInfinie";
+import {Point} from "../../src/point";
 
 export class PositionBuilder {
     static Origine(): Position {
@@ -16,6 +17,6 @@ export class PositionBuilder {
     }
 
     Build() : Position {
-        return new Position(this._latitude, this._longitude, new PlanèteInfinie());
+        return new Position(new Point(this._latitude, this._longitude), new PlanèteInfinie());
     }
 }

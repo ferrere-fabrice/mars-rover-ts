@@ -1,5 +1,5 @@
-import {Position} from "./position.ts";
+import {Point} from "./point.ts";
 
 export interface SystèmeCoordonnées {
-    Normaliser(position: Position) : Position;
+    Normaliser(position: Point) : Point;
 }

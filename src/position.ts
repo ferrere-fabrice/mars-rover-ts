@@ -1,36 +1,28 @@
 import {SystèmeCoordonnées} from "./systèmeCoordonnées.interface.ts";
+import {Point} from "./point.ts";
 
 export class Position {
-    private readonly _latitude: number;
-    private readonly _longitude: number;
+    private readonly _point: Point;
     private readonly _systèmeCoordonnées: SystèmeCoordonnées;
 
-    constructor(latitude: number, longitude: number, systèmeCoordonnées: SystèmeCoordonnées) {
-        this._latitude = latitude == -0 ? 0 : latitude;
-        this._longitude = longitude == -0 ? 0 : longitude;
+    constructor(point: Point, systèmeCoordonnées: SystèmeCoordonnées) {
+        this._point = systèmeCoordonnées.Normaliser(point);
         this._systèmeCoordonnées = systèmeCoordonnées;
     }
 
     IncrémenterLatitude() : Position {
-        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude + 1, this._longitude, this._systèmeCoordonnées));
+        return new Position(this._point.IncrémenterLatitude(), this._systèmeCoordonnées);
     }
 
     DécrémenterLatitude() : Position {
-        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude - 1, this._longitude, this._systèmeCoordonnées));
+        return new Position(this._point.DécrémenterLatitude(), this._systèmeCoordonnées);
     }
 
     IncrémenterLongitude() : Position {
-        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude, this._longitude + 1, this._systèmeCoordonnées));
+        return new Position(this._point.IncrémenterLongitude(), this._systèmeCoordonnées);
     }
 
     DécrémenterLongitude() : Position {
-        return this._systèmeCoordonnées.Normaliser(new Position(this._latitude, this._longitude - 1, this._systèmeCoordonnées));
-    }
-
-    Modulo(modulo: number) {
-        return new Position(
-            this._latitude % modulo,
-            this._longitude % modulo,
-            this._systèmeCoordonnées);
+        return new Position(this._point.DécrémenterLongitude(), this._systèmeCoordonnées);
     }
 }
