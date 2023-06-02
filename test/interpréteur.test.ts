@@ -7,6 +7,7 @@ import {Point} from "../src/geometrie/point";
 import {Orientation} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {EtatRover} from "../src/EtatRover";
+import {générerCombinaisons} from "./utilities/combinatoire";
 const each = require("jest-each").default;
 
 const latitudesDépart = [0, 1];
@@ -25,23 +26,6 @@ function générerCommandesComplexes(){
     }
 
     return commandes;
-}
-
-function *générerCombinaisons(elements: string[], nombreElements: number) : Generator<string> {
-    if(nombreElements == 0)
-        yield "";
-    else {
-        for (const elementIndex in elements) {
-            const element = elements[elementIndex];
-            const combinaisonsRangInférieur =
-                générerCombinaisons(elements.slice(1), nombreElements - 1);
-
-            // @ts-ignore
-            for (const combinaisonRangInférieur of combinaisonsRangInférieur) {
-                yield combinaisonRangInférieur + element;
-            }
-        }
-    }
 }
 
 describe('FEATURE Interpréteur', () => {
