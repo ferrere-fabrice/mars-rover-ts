@@ -27,7 +27,7 @@ describe('FEATURE Planète', () => {
 
             let positionRenvoyée = positionOriginale;
             for (let i = 0; i < taille; i++) {
-                positionRenvoyée = rover.Avancer();
+                positionRenvoyée = rover.Avancer().Position;
             }
 
             expect(positionRenvoyée).toStrictEqual(positionOriginale);

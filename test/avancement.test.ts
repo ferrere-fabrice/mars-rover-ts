@@ -27,7 +27,7 @@ describe('FEATURE Avancement', () => {
                 .Build();
 
             rover.Avancer();
-            const positionFinale = rover.Reculer();
+            const positionFinale = rover.Reculer().Position;
 
             expect(positionFinale).toStrictEqual(positionOriginale);
     });
@@ -49,7 +49,7 @@ describe('FEATURE Avancement', () => {
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
                 positionAttendue = positionAttendue.IncrémenterLatitude();
-                positionRenvoyée = rover.Avancer();
+                positionRenvoyée = rover.Avancer().Position;
             }
 
             expect(positionRenvoyée).toStrictEqual(positionAttendue);
@@ -71,7 +71,7 @@ describe('FEATURE Avancement', () => {
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
                 positionAttendue = positionAttendue.DécrémenterLatitude();
-                positionRenvoyée = rover.Avancer();
+                positionRenvoyée = rover.Avancer().Position;
             }
 
         expect(positionRenvoyée).toStrictEqual(positionAttendue);
@@ -93,7 +93,7 @@ describe('FEATURE Avancement', () => {
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
                 positionAttendue = positionAttendue.IncrémenterLongitude();
-                positionRenvoyée = rover.Avancer();
+                positionRenvoyée = rover.Avancer().Position;
             }
 
             expect(positionRenvoyée).toStrictEqual(positionAttendue);
@@ -115,7 +115,7 @@ describe('FEATURE Avancement', () => {
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
                 positionAttendue = positionAttendue.DécrémenterLongitude();
-                positionRenvoyée = rover.Avancer();
+                positionRenvoyée = rover.Avancer().Position;
             }
 
             expect(positionRenvoyée).toStrictEqual(positionAttendue);

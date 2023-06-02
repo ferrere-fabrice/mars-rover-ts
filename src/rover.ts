@@ -1,48 +1,47 @@
 import {Orientation} from "./topologie/orientation.ts";
 import {Position} from "./geometrie/position.ts";
+import {EtatRover} from "./EtatRover.ts";
 
 export class Rover {
-    private _orientation: Orientation;
-    private _position: Position;
+    private _etat: EtatRover;
 
     constructor(orientation: Orientation, position: Position) {
-        this._orientation = orientation;
-        this._position = position;
+        this._etat = new EtatRover(orientation, position);
     }
 
-    TourneADroite() : Orientation {
-        this._orientation = this._orientation.RotationHoraire();
-        return this._orientation;
+    TourneADroite() : EtatRover {
+        this._etat = this._etat.WithRotationHoraire();
+        return this._etat;
     }
 
-    TourneAGauche(): Orientation {
-        this._orientation = this._orientation.RotationAntihoraire();
-        return this._orientation;
+    TourneAGauche(): EtatRover {
+        this._etat = this._etat.WithRotationAntihoraire();
+        return this._etat;
     }
 
-    Avancer() : Position {
-        if(this._orientation == Orientation.Sud)
-            this._position = this._position.DécrémenterLatitude();
-        else if(this._orientation == Orientation.Est)
-            this._position = this._position.IncrémenterLongitude();
-        else if(this._orientation == Orientation.Ouest)
-            this._position = this._position.DécrémenterLongitude();
+    Avancer() : EtatRover {
+        if(this._etat.Orientation == Orientation.Sud)
+            this._etat = this._etat.WithLatitudeDécrémentée();
+        else if(this._etat.Orientation == Orientation.Est)
+            this._etat = this._etat.WithLongitudeIncrémentée();
+        else if(this._etat.Orientation == Orientation.Ouest)
+            this._etat = this._etat.WithLongitudeDécrémentée();
         else
-            this._position = this._position.IncrémenterLatitude();
+            this._etat = this._etat.WithLatitudeIncrémentée();
 
-        return this._position;
+        return this._etat;
     }
 
-    Reculer(): Position {
-        if(this._orientation == Orientation.Sud)
-            this._position = this._position.IncrémenterLatitude();
-        else if(this._orientation == Orientation.Est)
-            this._position = this._position.DécrémenterLongitude();
-        else if(this._orientation == Orientation.Ouest)
-            this._position = this._position.IncrémenterLongitude();
+    Reculer(): EtatRover {
+        if(this._etat.Orientation == Orientation.Sud)
+            this._etat = this._etat.WithLatitudeIncrémentée();
+        else if(this._etat.Orientation == Orientation.Est)
+            this._etat = this._etat.WithLongitudeDécrémentée();
+        else if(this._etat.Orientation == Orientation.Ouest)
+            this._etat = this._etat.WithLongitudeIncrémentée()
         else
-            this._position = this._position.DécrémenterLatitude();
+            this._etat = this._etat.WithLatitudeDécrémentée()
 
-        return this._position;
+        return this._etat;
     }
 }

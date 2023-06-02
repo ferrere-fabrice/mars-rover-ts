@@ -20,7 +20,7 @@ describe('FEATURE Rotation', () => {
 
         let orientationRover: Orientation = initiale;
         for (let rotations=0; rotations<nombreFois; rotations++){
-            orientationRover = rover.TourneADroite();
+            orientationRover = rover.TourneADroite().Orientation;
         }
 
         expect(orientationRover).toBe(finale);
@@ -43,7 +43,7 @@ describe('FEATURE Rotation', () => {
 
             let orientationRover: Orientation = initiale;
             for (let rotations=0; rotations<nombreFois; rotations++){
-                orientationRover = rover.TourneAGauche();
+                orientationRover = rover.TourneAGauche().Orientation;
             }
 
             expect(orientationRover).toBe(finale);
