@@ -6,10 +6,43 @@ import {PlanèteInfinie} from "./utilities/planèteInfinie";
 import {Point} from "../src/geometrie/point";
 import {Orientation} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
+import {EtatRover} from "../src/EtatRover";
 const each = require("jest-each").default;
 
 const latitudesDépart = [0, 1];
 const longitudesDépart = [0, 1];
+
+const commandesTestables = ['A', 'R' ,'D', 'G'];
+const nombresOpérandes = [2, 3, 5];
+
+function générerCommandesComplexes(){
+    let commandes :string[] = [];
+
+    for (const nombreOpérandes of nombresOpérandes) {
+        const combinaisons = générerCombinaisons(commandesTestables, nombreOpérandes);
+        // @ts-ignore
+        for (const combinaison of combinaisons) commandes.push(combinaison);
+    }
+
+    return commandes;
+}
+
+function *générerCombinaisons(elements: string[], nombreElements: number) : Generator<string> {
+    if(nombreElements == 0)
+        yield "";
+    else {
+        for (const elementIndex in elements) {
+            const element = elements[elementIndex];
+            const combinaisonsRangInférieur =
+                générerCombinaisons(elements.slice(1), nombreElements - 1);
+
+            // @ts-ignore
+            for (const combinaisonRangInférieur of combinaisonsRangInférieur) {
+                yield combinaisonRangInférieur + element;
+            }
+        }
+    }
+}
 
 describe('FEATURE Interpréteur', () => {
     each(new CartesianData(latitudesDépart, longitudesDépart).toTestCases())
@@ -95,12 +128,12 @@ describe('FEATURE Interpréteur', () => {
 });
 
 describe('FEATURE Commandes Multiples', () => {
-    each(new CartesianData(TestPrimitives.Orientations, latitudesDépart, longitudesDépart).toTestCases())
+    each(new CartesianData(TestPrimitives.Orientations, latitudesDépart, longitudesDépart, générerCommandesComplexes()).toTestCases())
         .it("ETANT DONNE un Interpréteur " +
             "ET un Rover orienté %s en position %s, %s " +
-            "QUAND on lui envoie 'DA' " +
-            "ALORS le Rover tourne à droite puis avance",
-            (orientation: Orientation, latitude: number, longitude: number) => {
+            "QUAND on lui envoie plusieurs commandes %s " +
+            "ALORS le Rover se comporte comme si chacune avait été envoyée à la suite",
+            (orientation: Orientation, latitude: number, longitude: number, commande: string) => {
                 const positionDépartCommune = new Position(new Point(latitude, longitude), new PlanèteInfinie());
 
                 const configurationCommune = new RoverBuilder()
@@ -108,13 +141,18 @@ describe('FEATURE Commandes Multiples', () => {
                     .AyantPourOrientation(orientation);
 
                 const roverTémoin = configurationCommune.Build();
-                const roverInterprété = configurationCommune.Build();
+                const roverTesté = configurationCommune.Build();
 
-                const interpréteur = new InterpréteurRover(roverInterprété);
+                const interpréteurTesté = new InterpréteurRover(roverTesté);
+                const interpréteurTémoin = new InterpréteurRover(roverTémoin);
 
-                const résultatCommande = interpréteur.Interpréter("DA");
-                let résultatTémoin = roverTémoin.TourneADroite();
-                résultatTémoin = roverTémoin.Avancer();
+                let résultatTémoin: EtatRover|undefined = undefined;
+
+                for (const commandeSimple of commande) {
+                    résultatTémoin = interpréteurTémoin.Interpréter(commandeSimple);
+                }
+
+                const résultatCommande = interpréteurTesté.Interpréter(commande);
 
                 expect(résultatCommande).toStrictEqual(résultatTémoin);
             });

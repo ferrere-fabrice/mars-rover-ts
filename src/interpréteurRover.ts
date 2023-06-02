@@ -8,9 +8,9 @@ export class InterpréteurRover {
     }
 
     public Interpréter(commande: string) : EtatRover {
-        if(commande == "DA"){
-            this._rover.TourneADroite();
-            return this._rover.Avancer();
+        if(commande.length > 1) {
+            this.Interpréter(commande[0]);
+            return this.Interpréter(commande.slice(1));
         }
 
         if(commande == "A") return this._rover.Avancer();
