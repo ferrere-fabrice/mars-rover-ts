@@ -1,4 +1,4 @@
-import {EtatRover} from "./etatRover.ts";
+import {Rover} from "./rover.ts";
 import {RoverInterface} from "./rover.interface.ts";
 
 export class InterpréteurRover {
@@ -7,7 +7,7 @@ export class InterpréteurRover {
         this._rover = roverCommandé;
     }
 
-    public Interpréter(commande: string) : EtatRover {
+    public Interpréter(commande: string) : Rover {
         if(commande.length > 1) {
             this.Interpréter(commande[0]);
             return this.Interpréter(commande.slice(1));

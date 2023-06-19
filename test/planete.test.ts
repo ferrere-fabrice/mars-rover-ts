@@ -24,16 +24,15 @@ describe('FEATURE Planète', () => {
                 .AyantPourSystèmeDeCoordonnées(planète)
                 .Build();
 
-            const rover = new RoverBuilder()
+            let rover = new RoverBuilder()
                 .AyantPourOrientation(orientation)
                 .AyantPourPosition(positionOriginale)
                 .Build();
 
-            let positionRenvoyée = positionOriginale;
             for (let i = 0; i < taille; i++) {
-                positionRenvoyée = rover.Avancer().Position;
+                rover = rover.Avancer();
             }
 
-            expect(positionRenvoyée).toStrictEqual(positionOriginale);
+            expect(rover.Position).toStrictEqual(positionOriginale);
     });
 });

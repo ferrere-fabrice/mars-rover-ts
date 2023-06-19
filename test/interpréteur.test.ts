@@ -3,7 +3,7 @@ import {InterpréteurRover} from "../src/rover/interpréteurRover";
 import {CartesianData} from "./utilities/cartesianData";
 import {Orientation} from "../src/topologie/orientations";
 import {TestPrimitives} from "./utilities/testPrimitives";
-import {EtatRover} from "../src/rover/etatRover";
+import {Rover} from "../src/rover/rover";
 import {générerCombinaisons} from "./utilities/combinatoire";
 import {PositionBuilder} from "./utilities/position.builder";
 const each = require("jest-each").default;
@@ -134,7 +134,7 @@ describe('FEATURE Commandes Multiples', () => {
                 const interpréteurTesté = new InterpréteurRover(roverTesté);
                 const interpréteurTémoin = new InterpréteurRover(roverTémoin);
 
-                let résultatTémoin: EtatRover|undefined = undefined;
+                let résultatTémoin: Rover|undefined = undefined;
 
                 for (const commandeSimple of commande) {
                     résultatTémoin = interpréteurTémoin.Interpréter(commandeSimple);
