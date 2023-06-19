@@ -1,9 +1,9 @@
-import {Rover} from "./rover.ts";
-import {EtatRover} from "./EtatRover.ts";
+import {EtatRover} from "./etatRover.ts";
+import {RoverInterface} from "./rover.interface.ts";
 
 export class InterpréteurRover {
-    private _rover: Rover;
-    public constructor(rover: Rover) {
+    private _rover: RoverInterface;
+    public constructor(rover: RoverInterface) {
         this._rover = rover;
     }
 

@@ -1,12 +1,12 @@
 import {RoverBuilder} from "./utilities/rover.builder";
-import {InterpréteurRover} from "../src/interpréteurRover";
+import {InterpréteurRover} from "../src/rover/interpréteurRover";
 import {CartesianData} from "./utilities/cartesianData";
 import {Position} from "../src/geometrie/position";
 import {PlanèteInfinie} from "./utilities/planèteInfinie";
 import {Point} from "../src/geometrie/point";
 import {OrientationInterface} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
-import {EtatRover} from "../src/EtatRover";
+import {EtatRover} from "../src/rover/etatRover";
 import {générerCombinaisons} from "./utilities/combinatoire";
 const each = require("jest-each").default;
 

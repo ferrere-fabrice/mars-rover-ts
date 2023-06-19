@@ -1,4 +1,4 @@
-import {Rover} from "../../src/rover";
+import {StatefulRover} from "../../src/rover/statefulRover";
 import {Orientation, OrientationInterface} from "../../src/topologie/orientation";
 import {Position} from "../../src/geometrie/position";
 import {PositionBuilder} from "./position.builder";
@@ -18,7 +18,7 @@ export class RoverBuilder {
         return this;
     }
 
-    Build(): Rover {
-        return new Rover(this._orientation, this._position);
+    Build(): StatefulRover {
+        return new StatefulRover(this._orientation, this._position);
     };
 }

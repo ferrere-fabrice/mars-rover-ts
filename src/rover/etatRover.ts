@@ -1,5 +1,5 @@
-import {Orientation, OrientationInterface} from "./topologie/orientation.ts";
-import {Position} from "./geometrie/position.ts";
+import {Orientation, OrientationInterface} from "../topologie/orientation.ts";
+import {Position} from "../geometrie/position.ts";
 
 export class EtatRover {
     public readonly Orientation: OrientationInterface;
