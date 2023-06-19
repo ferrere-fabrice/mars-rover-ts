@@ -1,13 +1,11 @@
 import {RoverBuilder} from "./utilities/rover.builder";
 import {InterpréteurRover} from "../src/rover/interpréteurRover";
 import {CartesianData} from "./utilities/cartesianData";
-import {Position} from "../src/geometrie/position";
-import {PlanèteInfinie} from "./utilities/planèteInfinie";
-import {Point} from "../src/geometrie/point";
 import {OrientationInterface} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {EtatRover} from "../src/rover/etatRover";
 import {générerCombinaisons} from "./utilities/combinatoire";
+import {PositionBuilder} from "./utilities/position.builder";
 const each = require("jest-each").default;
 
 const latitudesDépart = [0, 1];
@@ -35,7 +33,9 @@ describe('FEATURE Interpréteur', () => {
         "QUAND on lui envoie 'A' " +
         "ALORS le Rover avance",
             (latitude: number, longitude: number) => {
-            const positionDépartCommune = new Position(new Point(latitude, longitude), new PlanèteInfinie());
+            const positionDépartCommune = new PositionBuilder()
+                    .AyantPourCoordonnées(latitude, longitude)
+                    .Build();
 
             const roverTémoin = new RoverBuilder().AyantPourPosition(positionDépartCommune).Build();
             const roverInterprété = new RoverBuilder().AyantPourPosition(positionDépartCommune).Build();
@@ -53,7 +53,9 @@ describe('FEATURE Interpréteur', () => {
             "QUAND on lui envoie 'R' " +
             "ALORS le Rover avance",
             (latitude: number, longitude: number) => {
-                const positionDépartCommune = new Position(new Point(latitude, longitude), new PlanèteInfinie());
+                const positionDépartCommune = new PositionBuilder()
+                    .AyantPourCoordonnées(latitude, longitude)
+                    .Build();
 
                 const roverTémoin = new RoverBuilder().AyantPourPosition(positionDépartCommune).Build();
                 const roverInterprété = new RoverBuilder().AyantPourPosition(positionDépartCommune).Build();
@@ -118,7 +120,9 @@ describe('FEATURE Commandes Multiples', () => {
             "QUAND on lui envoie plusieurs commandes %s " +
             "ALORS le Rover se comporte comme si chacune avait été envoyée à la suite",
             (orientation: OrientationInterface, latitude: number, longitude: number, commande: string) => {
-                const positionDépartCommune = new Position(new Point(latitude, longitude), new PlanèteInfinie());
+                const positionDépartCommune = new PositionBuilder()
+                    .AyantPourCoordonnées(latitude, longitude)
+                    .Build();
 
                 const configurationCommune = new RoverBuilder()
                     .AyantPourPosition(positionDépartCommune)
