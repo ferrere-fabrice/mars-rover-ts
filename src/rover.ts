@@ -10,38 +10,18 @@ export class Rover {
     }
 
     TourneADroite() : EtatRover {
-        this._etat = this._etat.WithRotationHoraire();
-        return this._etat;
+        return this._etat = this._etat.WithRotationHoraire();
     }
 
     TourneAGauche(): EtatRover {
-        this._etat = this._etat.WithRotationAntihoraire();
-        return this._etat;
+        return this._etat = this._etat.WithRotationAntihoraire();
     }
 
     Avancer() : EtatRover {
-        if(this._etat.Orientation == Orientation.Sud)
-            this._etat = this._etat.WithLatitudeDécrémentée();
-        else if(this._etat.Orientation == Orientation.Est)
-            this._etat = this._etat.WithLongitudeIncrémentée();
-        else if(this._etat.Orientation == Orientation.Ouest)
-            this._etat = this._etat.WithLongitudeDécrémentée();
-        else
-            this._etat = this._etat.WithLatitudeIncrémentée();
-
-        return this._etat;
+        return this._etat = this._etat.WithAvancement();
     }
 
     Reculer(): EtatRover {
-        if(this._etat.Orientation == Orientation.Sud)
-            this._etat = this._etat.WithLatitudeIncrémentée();
-        else if(this._etat.Orientation == Orientation.Est)
-            this._etat = this._etat.WithLongitudeDécrémentée();
-        else if(this._etat.Orientation == Orientation.Ouest)
-            this._etat = this._etat.WithLongitudeIncrémentée()
-        else
-            this._etat = this._etat.WithLatitudeDécrémentée()
-
-        return this._etat;
+        return this._etat = this._etat.WithRecul();
     }
 }

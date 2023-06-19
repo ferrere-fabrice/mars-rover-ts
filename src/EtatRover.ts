@@ -10,19 +10,19 @@ export class EtatRover {
         this.Position = position;
     }
 
-    public WithLatitudeDécrémentée(): EtatRover {
+    private WithLatitudeDécrémentée(): EtatRover {
         return new EtatRover(this.Orientation, this.Position.DécrémenterLatitude());
     }
 
-    public WithLatitudeIncrémentée(): EtatRover {
+    private WithLatitudeIncrémentée(): EtatRover {
         return new EtatRover(this.Orientation, this.Position.IncrémenterLatitude());
     }
 
-    public WithLongitudeDécrémentée(): EtatRover {
+    private WithLongitudeDécrémentée(): EtatRover {
         return new EtatRover(this.Orientation, this.Position.DécrémenterLongitude());
     }
 
-    public WithLongitudeIncrémentée(): EtatRover {
+    private WithLongitudeIncrémentée(): EtatRover {
         return new EtatRover(this.Orientation, this.Position.IncrémenterLongitude());
     }
 
@@ -32,5 +32,27 @@ export class EtatRover {
 
     public WithRotationAntihoraire() : EtatRover {
         return new EtatRover(this.Orientation.RotationAntihoraire(), this.Position);
+    }
+
+    public WithAvancement() : EtatRover {
+        if(this.Orientation == Orientation.Sud)
+            return this.WithLatitudeDécrémentée();
+        else if(this.Orientation == Orientation.Est)
+            return this.WithLongitudeIncrémentée();
+        else if(this.Orientation == Orientation.Ouest)
+            return this.WithLongitudeDécrémentée();
+        else
+            return this.WithLatitudeIncrémentée();
+    }
+
+    public WithRecul() : EtatRover {
+        if(this.Orientation == Orientation.Sud)
+            return this.WithLatitudeIncrémentée();
+        else if(this.Orientation == Orientation.Est)
+            return this.WithLongitudeDécrémentée();
+        else if(this.Orientation == Orientation.Ouest)
+            return this.WithLongitudeIncrémentée()
+        else
+            return this.WithLatitudeDécrémentée()
     }
 }
