@@ -1,7 +1,7 @@
 import {RoverBuilder} from "./utilities/rover.builder";
 import {PlanèteToroïdale} from "../src/topologie/planeteToroïdale";
 import {CartesianData} from "./utilities/cartesianData";
-import {OrientationInterface} from "../src/topologie/orientation";
+import {Orientation} from "../src/topologie/orientations";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {PositionBuilder} from "./utilities/position.builder";
 const each = require("jest-each").default;
@@ -16,7 +16,7 @@ describe('FEATURE Planète', () => {
             'ET posé aux coordonnées %s, %s sur une planète de taille %s ' +
             'QUAND il avance suffisamment pour faire le tour de la planète ' +
             'ALORS il est revenu à son point de départ',
-        (orientation: OrientationInterface, latitudeDépart: number, longitudeDépart: number, taille: number) => {
+        (orientation: Orientation, latitudeDépart: number, longitudeDépart: number, taille: number) => {
             const planète = new PlanèteToroïdale(taille);
 
             const positionOriginale = new PositionBuilder()

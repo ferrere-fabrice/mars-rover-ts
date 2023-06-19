@@ -3,8 +3,8 @@ import {RoverInterface} from "./rover.interface.ts";
 
 export class InterpréteurRover {
     private _rover: RoverInterface;
-    public constructor(rover: RoverInterface) {
-        this._rover = rover;
+    public constructor(roverCommandé: RoverInterface) {
+        this._rover = roverCommandé;
     }
 
     public Interpréter(commande: string) : EtatRover {

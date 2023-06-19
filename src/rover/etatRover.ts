@@ -1,11 +1,11 @@
-import {OrientationInterface} from "../topologie/orientation.ts";
+import {Orientation} from "../topologie/orientations.ts";
 import {Position} from "../geometrie/position.ts";
 
 export class EtatRover {
-    public readonly Orientation: OrientationInterface;
+    public readonly Orientation: Orientation;
     public readonly Position: Position;
 
-    public constructor(orientation: OrientationInterface, position: Position) {
+    public constructor(orientation: Orientation, position: Position) {
         this.Orientation = orientation;
         this.Position = position;
     }
@@ -25,12 +25,12 @@ export class EtatRover {
     public WithAvancement() : EtatRover {
         return new EtatRover(
             this.Orientation,
-            this.Orientation.Avancement(this.Position));
+            this.Orientation.FaireAvancer(this.Position));
     }
 
     public WithRecul() : EtatRover {
         return new EtatRover(
             this.Orientation,
-            this.Orientation.Recul(this.Position));
+            this.Orientation.FaireReculer(this.Position));
     }
 }

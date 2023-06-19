@@ -1,4 +1,4 @@
-import {Orientation, OrientationInterface} from "../src/topologie/orientation";
+import {Orientations, Orientation} from "../src/topologie/orientations";
 import {RoverBuilder} from "./utilities/rover.builder";
 import {CartesianData} from "./utilities/cartesianData";
 import {PositionBuilder} from "./utilities/position.builder";
@@ -15,7 +15,7 @@ describe('FEATURE Avancement', () => {
     ).it('ETANT DONNE un rover démarrant en %s, %s, orienté %s ' +
         'QUAND il avance puis recule ' +
         'ALORS sa nouvelle position est sa position de départ',
-        (latitudeDépart: number, longitudeDépart: number, orientation: OrientationInterface) => {
+        (latitudeDépart: number, longitudeDépart: number, orientation: Orientation) => {
 
             const positionOriginale = new PositionBuilder()
                 .AyantPourCoordonnées(latitudeDépart, longitudeDépart)
@@ -40,7 +40,7 @@ describe('FEATURE Avancement', () => {
         (nombreMouvements: number) => {
             const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
-                .AyantPourOrientation(Orientation.Nord)
+                .AyantPourOrientation(Orientations.Nord)
                 .AyantPourPosition(positionOriginale)
                 .Build();
 
@@ -48,7 +48,7 @@ describe('FEATURE Avancement', () => {
             let positionRenvoyée = positionOriginale;
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
-                positionAttendue = positionAttendue.IncrémenterLatitude();
+                positionAttendue = positionAttendue.IncrémenterLatitudeSaufObstacle();
                 positionRenvoyée = rover.Avancer().Position;
             }
 
@@ -62,7 +62,7 @@ describe('FEATURE Avancement', () => {
         (nombreMouvements: number) => {
             const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
-                .AyantPourOrientation(Orientation.Sud)
+                .AyantPourOrientation(Orientations.Sud)
                 .AyantPourPosition(positionOriginale)
                 .Build();
 
@@ -70,7 +70,7 @@ describe('FEATURE Avancement', () => {
             let positionRenvoyée = positionOriginale;
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
-                positionAttendue = positionAttendue.DécrémenterLatitude();
+                positionAttendue = positionAttendue.DécrémenterLatitudeSaufObstacle();
                 positionRenvoyée = rover.Avancer().Position;
             }
 
@@ -84,7 +84,7 @@ describe('FEATURE Avancement', () => {
         (nombreMouvements: number) => {
             const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
-                .AyantPourOrientation(Orientation.Est)
+                .AyantPourOrientation(Orientations.Est)
                 .AyantPourPosition(positionOriginale)
                 .Build();
 
@@ -92,7 +92,7 @@ describe('FEATURE Avancement', () => {
             let positionRenvoyée = positionOriginale;
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
-                positionAttendue = positionAttendue.IncrémenterLongitude();
+                positionAttendue = positionAttendue.IncrémenterLongitudeSaufObstacle();
                 positionRenvoyée = rover.Avancer().Position;
             }
 
@@ -106,7 +106,7 @@ describe('FEATURE Avancement', () => {
         (nombreMouvements: number) => {
             const positionOriginale = PositionBuilder.Origine();
             const rover = new RoverBuilder()
-                .AyantPourOrientation(Orientation.Ouest)
+                .AyantPourOrientation(Orientations.Ouest)
                 .AyantPourPosition(positionOriginale)
                 .Build();
 
@@ -114,7 +114,7 @@ describe('FEATURE Avancement', () => {
             let positionRenvoyée = positionOriginale;
 
             for(let mouvements =0; mouvements < nombreMouvements; mouvements ++){
-                positionAttendue = positionAttendue.DécrémenterLongitude();
+                positionAttendue = positionAttendue.DécrémenterLongitudeSaufObstacle();
                 positionRenvoyée = rover.Avancer().Position;
             }
 

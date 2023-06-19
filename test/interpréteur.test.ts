@@ -1,7 +1,7 @@
 import {RoverBuilder} from "./utilities/rover.builder";
 import {InterpréteurRover} from "../src/rover/interpréteurRover";
 import {CartesianData} from "./utilities/cartesianData";
-import {OrientationInterface} from "../src/topologie/orientation";
+import {Orientation} from "../src/topologie/orientations";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {EtatRover} from "../src/rover/etatRover";
 import {générerCombinaisons} from "./utilities/combinatoire";
@@ -72,7 +72,7 @@ describe('FEATURE Interpréteur', () => {
             "ET un Rover orienté %s " +
             "QUAND on lui envoie 'D' " +
             "ALORS le Rover tourne à droite",
-            (orientationDépart: OrientationInterface) => {
+            (orientationDépart: Orientation) => {
                 const roverTémoin = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const roverInterprété = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const interpréteur = new InterpréteurRover(roverInterprété);
@@ -88,7 +88,7 @@ describe('FEATURE Interpréteur', () => {
             "ET un Rover orienté %s " +
             "QUAND on lui envoie 'G' " +
             "ALORS le Rover tourne à droite",
-            (orientationDépart: OrientationInterface) => {
+            (orientationDépart: Orientation) => {
                 const roverTémoin = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const roverInterprété = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const interpréteur = new InterpréteurRover(roverInterprété);
@@ -119,7 +119,7 @@ describe('FEATURE Commandes Multiples', () => {
             "ET un Rover orienté %s en position %s, %s " +
             "QUAND on lui envoie plusieurs commandes %s " +
             "ALORS le Rover se comporte comme si chacune avait été envoyée à la suite",
-            (orientation: OrientationInterface, latitude: number, longitude: number, commande: string) => {
+            (orientation: Orientation, latitude: number, longitude: number, commande: string) => {
                 const positionDépartCommune = new PositionBuilder()
                     .AyantPourCoordonnées(latitude, longitude)
                     .Build();

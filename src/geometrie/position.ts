@@ -13,23 +13,23 @@ export class Position {
         this._systèmeCoordonnées = systèmeCoordonnées;
     }
 
-    IncrémenterLatitude() : Position {
-        return this.AllerADestinationSiLibre(this._point.IncrémenterLatitude());
+    IncrémenterLatitudeSaufObstacle() : Position {
+        return this.AllerADestinationSaufObstacle(this._point.IncrémenterLatitude());
     }
 
-    DécrémenterLatitude() : Position {
-        return this.AllerADestinationSiLibre(this._point.DécrémenterLatitude());
+    DécrémenterLatitudeSaufObstacle() : Position {
+        return this.AllerADestinationSaufObstacle(this._point.DécrémenterLatitude());
     }
 
-    IncrémenterLongitude() : Position {
-        return this.AllerADestinationSiLibre(this._point.IncrémenterLongitude());
+    IncrémenterLongitudeSaufObstacle() : Position {
+        return this.AllerADestinationSaufObstacle(this._point.IncrémenterLongitude());
     }
 
-    DécrémenterLongitude() : Position {
-        return this.AllerADestinationSiLibre(this._point.DécrémenterLongitude());
+    DécrémenterLongitudeSaufObstacle() : Position {
+        return this.AllerADestinationSaufObstacle(this._point.DécrémenterLongitude());
     }
 
-    private AllerADestinationSiLibre(pointDestination: Point) : Position{
+    private AllerADestinationSaufObstacle(pointDestination: Point) : Position{
         if(this._connaissanceObstacles.EstAccessible(pointDestination))
             return new Position(pointDestination, this._systèmeCoordonnées, this._connaissanceObstacles);
         return new Position(this._point, this._systèmeCoordonnées, this._connaissanceObstacles);

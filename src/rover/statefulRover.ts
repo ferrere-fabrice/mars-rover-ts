@@ -1,4 +1,4 @@
-import {OrientationInterface} from "../topologie/orientation.ts";
+import {Orientation} from "../topologie/orientations.ts";
 import {Position} from "../geometrie/position.ts";
 import {EtatRover} from "./etatRover.ts";
 import {RoverInterface} from "./rover.interface.ts";
@@ -6,7 +6,7 @@ import {RoverInterface} from "./rover.interface.ts";
 export class StatefulRover implements RoverInterface {
     private _etat: EtatRover;
 
-    constructor(orientation: OrientationInterface, position: Position) {
+    constructor(orientation: Orientation, position: Position) {
         this._etat = new EtatRover(orientation, position);
     }
 
