@@ -1,29 +1,124 @@
-export class Orientation {
-    static Nord: Orientation = new Orientation("Nord");
-    static Sud: Orientation = new Orientation("Sud");
-    static Est: Orientation = new Orientation("Est");
-    static Ouest: Orientation = new Orientation("Ouest");
-    private readonly _representation: string;
+import {Position} from "../geometrie/position.ts";
 
-    private constructor(representation: string) {
-        this._representation = representation;
+export interface OrientationInterface {
+    RotationHoraire() : OrientationInterface;
+    RotationAntihoraire() : OrientationInterface;
+    Avancement(position : Position) : Position;
+    Recul(position : Position) : Position;
+    toString(): string;
+}
+
+class OrientationNord implements OrientationInterface {
+    public static Instance = new OrientationNord();
+
+    private constructor(){
     }
 
-    RotationHoraire() : Orientation {
-        if(this == Orientation.Est) return Orientation.Sud;
-        if(this == Orientation.Sud) return Orientation.Ouest;
-        if(this == Orientation.Ouest) return Orientation.Nord;
+    Avancement(position: Position): Position {
+        return position.IncrémenterLatitude();
+    }
+
+    Recul(position: Position): Position {
+        return position.DécrémenterLatitude();
+    }
+
+    RotationAntihoraire(): OrientationInterface {
         return Orientation.Est;
     }
 
-    RotationAntihoraire() : Orientation {
-        if(this == Orientation.Est) return Orientation.Nord;
-        if(this == Orientation.Sud) return Orientation.Est;
-        if(this == Orientation.Ouest) return Orientation.Sud;
+    RotationHoraire(): OrientationInterface {
         return Orientation.Ouest;
     }
 
     toString(): string {
-        return this._representation;
+        return "Nord";
     }
+}
+
+class OrientationSud implements OrientationInterface {
+    public static Instance = new OrientationSud();
+
+    private constructor(){
+    }
+
+    Avancement(position: Position): Position {
+        return position.DécrémenterLatitude();
+    }
+
+    Recul(position: Position): Position {
+        return position.IncrémenterLatitude();
+    }
+
+    RotationAntihoraire(): OrientationInterface {
+        return Orientation.Ouest;
+    }
+
+    RotationHoraire(): OrientationInterface {
+        return Orientation.Est;
+    }
+
+    toString(): string {
+        return "Sud";
+    }
+}
+
+class OrientationEst implements OrientationInterface {
+    public static Instance = new OrientationEst();
+
+    private constructor(){
+    }
+
+    Avancement(position: Position): Position {
+        return position.IncrémenterLongitude();
+    }
+
+    Recul(position: Position): Position {
+        return position.DécrémenterLongitude();
+    }
+
+    RotationAntihoraire(): OrientationInterface {
+        return Orientation.Nord;
+    }
+
+    RotationHoraire(): OrientationInterface {
+        return Orientation.Sud;
+    }
+
+    toString(): string {
+        return "Est";
+    }
+}
+
+class OrientationOuest implements OrientationInterface {
+    public static Instance = new OrientationOuest();
+
+    private constructor(){
+    }
+
+    Avancement(position: Position): Position {
+        return position.DécrémenterLongitude();
+    }
+
+    Recul(position: Position): Position {
+        return position.IncrémenterLongitude();
+    }
+
+    RotationAntihoraire(): OrientationInterface {
+        return Orientation.Ouest;
+    }
+
+    RotationHoraire(): OrientationInterface {
+        return Orientation.Est;
+    }
+
+    toString(): string {
+        return "Ouest";
+    }
+}
+
+export class Orientation {
+    static Nord: OrientationInterface = OrientationNord.Instance;
+    static Sud: OrientationInterface = OrientationSud.Instance;
+    static Est: OrientationInterface = OrientationEst.Instance;
+    static Ouest: OrientationInterface = OrientationOuest.Instance;
 }

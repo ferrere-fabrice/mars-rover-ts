@@ -1,4 +1,4 @@
-import {Orientation} from "../src/topologie/orientation";
+import {Orientation, OrientationInterface} from "../src/topologie/orientation";
 import {RoverBuilder} from "./utilities/rover.builder";
 const each = require("jest-each").default;
 
@@ -15,7 +15,7 @@ describe('FEATURE Rotation', () => {
     ])
         .it('ETANT DONNE un rover orienté %s ' +
         'QUAND il tourne à droite %s fois ' +
-        'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
+        'ALORS son orientation est %s', (initiale: OrientationInterface, nombreFois: number, finale: Orientation) => {
         const rover = new RoverBuilder().AyantPourOrientation(initiale).Build();
 
         let orientationRover: Orientation = initiale;
@@ -23,7 +23,7 @@ describe('FEATURE Rotation', () => {
             orientationRover = rover.TourneADroite().Orientation;
         }
 
-        expect(orientationRover).toBe(finale);
+        expect(orientationRover).toEqual(finale);
     });
 
     each([
@@ -38,7 +38,7 @@ describe('FEATURE Rotation', () => {
     ])
         .it('ETANT DONNE un rover orienté %s ' +
             'QUAND il tourne à gauche %s fois ' +
-            'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
+            'ALORS son orientation est %s', (initiale: OrientationInterface, nombreFois: number, finale: Orientation) => {
             const rover = new RoverBuilder().AyantPourOrientation(initiale).Build();
 
             let orientationRover: Orientation = initiale;
@@ -46,6 +46,6 @@ describe('FEATURE Rotation', () => {
                 orientationRover = rover.TourneAGauche().Orientation;
             }
 
-            expect(orientationRover).toBe(finale);
+            expect(orientationRover).toEqual(finale);
         });
 });

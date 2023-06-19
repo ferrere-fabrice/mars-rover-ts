@@ -1,14 +1,14 @@
 import {Rover} from "../../src/rover";
-import {Orientation} from "../../src/topologie/orientation";
+import {Orientation, OrientationInterface} from "../../src/topologie/orientation";
 import {Position} from "../../src/geometrie/position";
 import {PositionBuilder} from "./position.builder";
 
 export class RoverBuilder {
 
-    private _orientation: Orientation = Orientation.Nord;
+    private _orientation: OrientationInterface = Orientation.Nord;
     private _position: Position = PositionBuilder.Origine();
 
-    AyantPourOrientation(orientation: Orientation): RoverBuilder{
+    AyantPourOrientation(orientation: OrientationInterface): RoverBuilder{
         this._orientation = orientation;
         return this;
     };

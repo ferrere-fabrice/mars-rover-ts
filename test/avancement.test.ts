@@ -1,4 +1,4 @@
-import {Orientation} from "../src/topologie/orientation";
+import {Orientation, OrientationInterface} from "../src/topologie/orientation";
 import {RoverBuilder} from "./utilities/rover.builder";
 import {CartesianData} from "./utilities/cartesianData";
 import {PositionBuilder} from "./utilities/position.builder";
@@ -15,7 +15,7 @@ describe('FEATURE Avancement', () => {
     ).it('ETANT DONNE un rover démarrant en %s, %s, orienté %s ' +
         'QUAND il avance puis recule ' +
         'ALORS sa nouvelle position est sa position de départ',
-        (latitudeDépart: number, longitudeDépart: number, orientation: Orientation) => {
+        (latitudeDépart: number, longitudeDépart: number, orientation: OrientationInterface) => {
 
             const positionOriginale = new PositionBuilder()
                 .AyantPourCoordonnées(latitudeDépart, longitudeDépart)

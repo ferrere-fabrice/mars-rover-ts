@@ -4,7 +4,7 @@ import {CartesianData} from "./utilities/cartesianData";
 import {Position} from "../src/geometrie/position";
 import {PlanèteInfinie} from "./utilities/planèteInfinie";
 import {Point} from "../src/geometrie/point";
-import {Orientation} from "../src/topologie/orientation";
+import {OrientationInterface} from "../src/topologie/orientation";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {EtatRover} from "../src/EtatRover";
 import {générerCombinaisons} from "./utilities/combinatoire";
@@ -70,7 +70,7 @@ describe('FEATURE Interpréteur', () => {
             "ET un Rover orienté %s " +
             "QUAND on lui envoie 'D' " +
             "ALORS le Rover tourne à droite",
-            (orientationDépart: Orientation) => {
+            (orientationDépart: OrientationInterface) => {
                 const roverTémoin = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const roverInterprété = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const interpréteur = new InterpréteurRover(roverInterprété);
@@ -86,7 +86,7 @@ describe('FEATURE Interpréteur', () => {
             "ET un Rover orienté %s " +
             "QUAND on lui envoie 'G' " +
             "ALORS le Rover tourne à droite",
-            (orientationDépart: Orientation) => {
+            (orientationDépart: OrientationInterface) => {
                 const roverTémoin = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const roverInterprété = new RoverBuilder().AyantPourOrientation(orientationDépart).Build();
                 const interpréteur = new InterpréteurRover(roverInterprété);
@@ -117,7 +117,7 @@ describe('FEATURE Commandes Multiples', () => {
             "ET un Rover orienté %s en position %s, %s " +
             "QUAND on lui envoie plusieurs commandes %s " +
             "ALORS le Rover se comporte comme si chacune avait été envoyée à la suite",
-            (orientation: Orientation, latitude: number, longitude: number, commande: string) => {
+            (orientation: OrientationInterface, latitude: number, longitude: number, commande: string) => {
                 const positionDépartCommune = new Position(new Point(latitude, longitude), new PlanèteInfinie());
 
                 const configurationCommune = new RoverBuilder()

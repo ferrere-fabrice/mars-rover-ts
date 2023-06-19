@@ -1,11 +1,11 @@
-import {Orientation} from "./topologie/orientation.ts";
+import {OrientationInterface} from "./topologie/orientation.ts";
 import {Position} from "./geometrie/position.ts";
 import {EtatRover} from "./EtatRover.ts";
 
 export class Rover {
     private _etat: EtatRover;
 
-    constructor(orientation: Orientation, position: Position) {
+    constructor(orientation: OrientationInterface, position: Position) {
         this._etat = new EtatRover(orientation, position);
     }
 
