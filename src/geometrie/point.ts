@@ -9,10 +9,11 @@ export class Point{
         this._longitude = longitude;
     }
 
-    public Modulo(modulo: Entier) {
-        return new Point(
-            this._latitude.Modulo(modulo),
-            this._longitude.Modulo(modulo));
+    public Modulo2D(modulo: Point) {
+        const latitude = this._latitude.Modulo(modulo._latitude);
+        const longitude = this._longitude.Modulo(modulo._longitude);
+
+        return new Point(latitude, longitude);
     }
 
     public IncrémenterLatitude() : Point {
@@ -29,11 +30,5 @@ export class Point{
 
     public DécrémenterLongitude() : Point {
         return new Point(this._latitude, this._longitude.Décrémenter());
-    }
-
-    public Add(other: Point) : Point {
-        return new Point(
-            this._latitude.Additionner(other._latitude),
-            this._longitude.Additionner(other._longitude));
     }
 }

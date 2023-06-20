@@ -32,7 +32,13 @@ export class Entier {
     }
 
     Modulo(other: Entier) {
-        return new Entier(this._valeur % other._valeur);
+        const valeurOther = other._valeur;
+
+        const valeurRéduiteSignée = (this._valeur % valeurOther) % -valeurOther;
+        const valeurNonSignée = valeurRéduiteSignée + valeurOther;
+        const valeurRéduiteNonSignée = valeurNonSignée % valeurOther;
+
+        return new Entier(valeurRéduiteNonSignée);
     }
 
     Inverser() {
