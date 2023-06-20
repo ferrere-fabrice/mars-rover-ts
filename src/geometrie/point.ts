@@ -3,8 +3,14 @@ export class Point{
     private readonly _longitude: number;
 
     constructor(latitude: number, longitude: number) {
-        this._latitude = latitude == -0 ? 0 : latitude;
-        this._longitude = longitude == -0 ? 0 : longitude;
+        this._latitude = Point.RedresserZéroNégatif(latitude);
+        this._longitude = Point.RedresserZéroNégatif(longitude);
+    }
+
+    private static RedresserZéroNégatif(nombre : number) {
+        if(nombre == -0) return 0;
+        return nombre;
+
     }
 
     public Modulo(modulo: number) {
