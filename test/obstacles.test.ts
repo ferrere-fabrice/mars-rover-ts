@@ -1,5 +1,5 @@
 import {RoverBuilder} from "./utilities/rover.builder";
-import {PlanèteToroïdale} from "../src/topologie/planeteToroïdale";
+import {PlanèteToroïdaleVide} from "../src/topologie/planeteToroïdale";
 import {PlanèteAvecObstacles} from "./utilities/planeteAvecObstacles";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {CartesianData} from "./utilities/cartesianData";
@@ -14,7 +14,7 @@ describe("FEATURE Obstacles", () => {
         "ET 3 obstacles sur les autres emplacements " +
         "QUAND il avance " +
         "ALORS il ne bouge pas", (orientation: Orientation) => {
-        const planète = new PlanèteAvecObstacles(new PlanèteToroïdale(new Entier(2)));
+        const planète = new PlanèteAvecObstacles(new PlanèteToroïdaleVide(new Entier(2)));
         planète.AjouterObstacle(0, 1);
         planète.AjouterObstacle(1, 0);
         planète.AjouterObstacle(1, 1);

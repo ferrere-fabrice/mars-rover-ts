@@ -1,8 +1,8 @@
-import {SystèmeCoordonnées} from "./systèmeCoordonnées.interface.ts";
+import {Planète} from "./planète.interface.ts";
 import {Point} from "../geometrie/point.ts";
 import {Entier} from "../math/Entier.ts";
 
-export class PlanèteToroïdale implements SystèmeCoordonnées {
+export class PlanèteToroïdaleVide implements Planète {
     private readonly _pointMax : Point;
 
     constructor(taille: Entier) {
@@ -11,5 +11,9 @@ export class PlanèteToroïdale implements SystèmeCoordonnées {
 
     Normaliser(point: Point): Point {
         return point.Modulo2D(this._pointMax);
+    }
+
+    SelonAccessibilité<T>(point: Point, actionSiObstacle: () => T, actionSiLibre: () => T): T {
+        return actionSiLibre();
     }
 }

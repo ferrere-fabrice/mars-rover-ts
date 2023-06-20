@@ -1,13 +1,12 @@
-import {PossèdeObstacles} from "../../src/topologie/possedeObstacles.interface";
-import {SystèmeCoordonnées} from "../../src/topologie/systèmeCoordonnées.interface";
+import {Planète} from "../../src/topologie/planète.interface";
 import {Point} from "../../src/geometrie/point";
 import {Entier} from "../../src/math/Entier";
 
-export class PlanèteAvecObstacles implements PossèdeObstacles, SystèmeCoordonnées {
-    private _decorated: SystèmeCoordonnées;
+export class PlanèteAvecObstacles implements Planète {
+    private _decorated: Planète;
     private _obstacles: Point[];
 
-    public constructor(decorated: SystèmeCoordonnées) {
+    public constructor(decorated: Planète) {
         this._decorated = decorated;
         this._obstacles = [];
     }
