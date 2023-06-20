@@ -16,7 +16,6 @@ export class Entier {
     private static RedresserZéroNégatif(nombre : number) {
         if(nombre == -0) return 0;
         return nombre;
-
     }
 
     Incrémenter() {
