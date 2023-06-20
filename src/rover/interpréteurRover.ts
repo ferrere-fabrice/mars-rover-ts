@@ -13,7 +13,7 @@ export class InterpréteurRover implements RoverInterface {
         return new InterpréteurRover(commande.ExécuterSur(this._rover));
     }
 
-    Avancer(): Rover {
+    public Avancer(): Rover {
         return this._rover.Avancer();
     }
 

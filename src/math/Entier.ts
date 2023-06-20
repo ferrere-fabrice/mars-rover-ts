@@ -1,5 +1,5 @@
 export class Entier {
-    private _valeur: number;
+    private readonly _valeur: number;
     public static readonly Zéro: Entier = new Entier(0);
 
     public constructor(valeur: number) {
@@ -7,10 +7,6 @@ export class Entier {
             throw new Error("Not an integer");
 
         this._valeur = Entier.RedresserZéroNégatif(valeur);
-    }
-
-    public EstZéro() {
-        return this._valeur == 0;
     }
 
     public Décrémenter() {
@@ -27,10 +23,6 @@ export class Entier {
         return new Entier(this._valeur + 1);
     }
 
-    Additionner(other: Entier) {
-        return new Entier(this._valeur + other._valeur);
-    }
-
     Modulo(other: Entier) {
         const valeurOther = other._valeur;
 
@@ -39,9 +31,5 @@ export class Entier {
         const valeurRéduiteNonSignée = valeurNonSignée % valeurOther;
 
         return new Entier(valeurRéduiteNonSignée);
-    }
-
-    Inverser() {
-        return new Entier(-this._valeur);
     }
 }
