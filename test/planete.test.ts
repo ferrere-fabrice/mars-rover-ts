@@ -4,6 +4,7 @@ import {CartesianData} from "./utilities/cartesianData";
 import {Orientation} from "../src/topologie/orientations";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {PositionBuilder} from "./utilities/position.builder";
+import {Entier} from "../src/math/Entier";
 const each = require("jest-each").default;
 
 const taillesPlanètes = [1, 2, 10];
@@ -17,7 +18,7 @@ describe('FEATURE Planète', () => {
             'QUAND il avance suffisamment pour faire le tour de la planète ' +
             'ALORS il est revenu à son point de départ',
         (orientation: Orientation, latitudeDépart: number, longitudeDépart: number, taille: number) => {
-            const planète = new PlanèteToroïdale(taille);
+            const planète = new PlanèteToroïdale(new Entier(taille));
 
             const positionOriginale = new PositionBuilder()
                 .AyantPourCoordonnées(latitudeDépart, longitudeDépart)

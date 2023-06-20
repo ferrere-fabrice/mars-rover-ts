@@ -1,5 +1,5 @@
 import {Point} from "../geometrie/point.ts";
 
 export interface PossèdeObstacles {
-    EstAccessible(point: Point): boolean;
+    SelonAccessibilité<T>(point: Point, actionSiObstacle: () => T, actionSiLibre: () => T): T;
 }

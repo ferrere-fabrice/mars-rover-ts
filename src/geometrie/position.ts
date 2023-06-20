@@ -30,8 +30,11 @@ export class Position {
     }
 
     private AllerADestinationSaufObstacle(pointDestination: Point) : Position{
-        if(this._connaissanceObstacles.EstAccessible(pointDestination))
-            return new Position(pointDestination, this._systèmeCoordonnées, this._connaissanceObstacles);
-        return new Position(this._point, this._systèmeCoordonnées, this._connaissanceObstacles);
+        const pointFinal = this._connaissanceObstacles.SelonAccessibilité(this._point,
+            () => this._point,
+            () => pointDestination
+        );
+
+        return new Position(pointFinal, this._systèmeCoordonnées, this._connaissanceObstacles);
     }
 }
