@@ -10,6 +10,16 @@ export class Interpretor {
 		return false;
 	}
 
-	actionRover(rover: Rover): void {
+	actionRover(rover: Rover, command: string): Rover {
+		
+		if(command === 'A'|| command === 'Z') return rover.Avancer();
+        if(command === 'R' || command ===  'S') return rover.Reculer();
+        if(command === 'D' ) return rover.TourneADroite();
+        if(command === 'G' || command ===  'Q') return rover.TourneAGauche();
+		
+		throw new Error("Not a valid command");
 	}
+
+	
+
 }

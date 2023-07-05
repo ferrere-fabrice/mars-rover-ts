@@ -1,5 +1,8 @@
+import { Rover } from "../rover/Rover";
+
 export interface ISender {
 
-	send(command: string): void;
+	sendToRover(command: string): void;
+	sendToMissionControl(rover: Rover): void;
 
 };

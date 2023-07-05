@@ -1,4 +1,8 @@
+import { Rover } from "../rover/Rover";
+
 export interface IReceiver {
 
-	receive(): void;
+	receiveFromRover(): Rover;
+	receiveFromMissionControl(): void;
+
 };

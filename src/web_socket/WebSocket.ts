@@ -1,18 +1,25 @@
 import { ISender } from "../interfaces/ISender";
 import { IReceiver } from "../interfaces/IReceiver";
 import { MissionControl } from "../mission_control/MissionControl";
+import { Rover } from "../rover/Rover";
 
 export class WebSocket implements ISender, IReceiver {
-
-	constructor(private _missionControl: MissionControl) {
-
+	receiveFromRover(): Rover {
+		throw new Error("Method not implemented.");
+	}
+	
+	sendToRover(command: string): void {
+		throw new Error("Method not implemented.");
+	}
+	sendToMissionControl(rover: Rover): void {
+		throw new Error("Method not implemented.");
 	}
 
-	send(): void {
-		this._missionControl.send(this);
+	receiveFromMissionControl(): void {
+		throw new Error("Method not implemented.");
 	}
 
-	receive(): void {
-		this._missionControl.receive(this);
-	}
+	
+
+	
 };

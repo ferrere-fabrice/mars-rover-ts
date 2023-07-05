@@ -8,15 +8,15 @@ import { Interpretor } from "../interpretor/Interpretor";
 
 export class MissionControl {
 	
-	constructor(private _interpretor: Interpretor) {
+	constructor(private _interpretor: Interpretor, private sender: ISender, private receiver: IReceiver) {
 	}
 
-	send(sender: ISender): void {
-		
+	send(command: string): void {
+		this.sender.sendToRover(command);
 	}
 
-	receive(receiver: IReceiver): void {
-		receiver.receive();
+	receive(message: string): void {
+		this.receiver.receiveFromRover();
 	}
 	
 	interpretCommand(command: string): void {
@@ -24,5 +24,6 @@ export class MissionControl {
 		if (!isVerified) {
 			throw new Error('Command not recognized');
 		}
+		this.send(command);
 	}
 }
