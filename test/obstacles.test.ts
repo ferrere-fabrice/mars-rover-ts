@@ -1,11 +1,9 @@
 import {RoverBuilder} from "./utilities/rover.builder";
-import {PlanèteToroïdaleVide} from "../src/topologie/planeteToroïdale";
-import {PlanèteAvecObstacles} from "./utilities/planeteAvecObstacles";
 import {TestPrimitives} from "./utilities/testPrimitives";
 import {CartesianData} from "./utilities/cartesianData";
 import {Orientation} from "../src/topologie/orientations";
 import {PositionBuilder} from "./utilities/position.builder";
-import {Entier} from "../src/math/Entier";
+import {PlaneteBuilder} from "../src/topologie/planete.builder";
 const each = require("jest-each").default;
 
 describe("FEATURE Obstacles", () => {
@@ -14,10 +12,12 @@ describe("FEATURE Obstacles", () => {
         "ET 3 obstacles sur les autres emplacements " +
         "QUAND il avance " +
         "ALORS il ne bouge pas", (orientation: Orientation) => {
-        const planète = new PlanèteAvecObstacles(new PlanèteToroïdaleVide(new Entier(2)));
-        planète.AjouterObstacle(0, 1);
-        planète.AjouterObstacle(1, 0);
-        planète.AjouterObstacle(1, 1);
+        const planète = new PlaneteBuilder()
+            .DeTaille(2)
+            .AyantUnObstacleAuxCoordonnees(0, 1)
+            .AyantUnObstacleAuxCoordonnees(1, 0)
+            .AyantUnObstacleAuxCoordonnees(1, 1)
+            .Build();
 
         const positionDépart = new PositionBuilder()
             .Origine()
