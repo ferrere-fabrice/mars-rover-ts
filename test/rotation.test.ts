@@ -16,16 +16,15 @@ describe('FEATURE Rotation', () => {
         .it('ETANT DONNE un rover orienté %s ' +
         'QUAND il tourne à droite %s fois ' +
         'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientations) => {
-        const rover = new RoverBuilder()
+        let rover = new RoverBuilder()
             .AyantPourOrientation(initiale)
             .Build();
 
-        let orientationRover: Orientations = initiale;
         for (let rotations=0; rotations<nombreFois; rotations++){
-            orientationRover = rover.TourneADroite().Orientation;
+            rover = rover.TourneADroite();
         }
 
-        expect(orientationRover).toEqual(finale);
+        expect(rover.Orientation).toEqual(finale);
     });
 
     each([
@@ -40,16 +39,15 @@ describe('FEATURE Rotation', () => {
     ])
         .it('ETANT DONNE un rover orienté %s ' +
             'QUAND il tourne à gauche %s fois ' +
-            'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientations) => {
-            const rover = new RoverBuilder()
+            'ALORS son orientation est %s', (initiale: Orientation, nombreFois: number, finale: Orientation) => {
+            let rover = new RoverBuilder()
                 .AyantPourOrientation(initiale)
                 .Build();
 
-            let orientationRover: Orientations = initiale;
             for (let rotations=0; rotations<nombreFois; rotations++){
-                orientationRover = rover.TourneAGauche().Orientation;
+                rover = rover.TourneAGauche();
             }
 
-            expect(orientationRover).toEqual(finale);
+            expect(rover.Orientation).toStrictEqual(finale);
         });
 });

@@ -31,4 +31,8 @@ export class Entier {
 
         return new Entier(valeurRéduiteNonSignée);
     }
+
+    public Equals(other: Entier) {
+        return this._valeur === other._valeur;
+    }
 }
