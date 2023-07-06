@@ -3,7 +3,6 @@ import { IReceiver } from "../interfaces/IReceiver";
 import { ISender } from "../interfaces/ISender";
 import { Interpretor } from "../interpretor/Interpretor";
 import { Orientation } from "../topologie/orientations";
-import { RoverWithState } from "./roverWithState";
 
 export class Rover {
   public readonly Orientation: Orientation;
@@ -26,6 +25,7 @@ export class Rover {
 
   receive(command: string): void {
     this.receiver.receiveFromMissionControl();
+    this.interpretCommand(command);
   }
 
   interpretCommand(command: string): void {

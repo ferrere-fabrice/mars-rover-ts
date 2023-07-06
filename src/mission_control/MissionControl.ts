@@ -1,9 +1,8 @@
-import { IConsoleCommand } from "../interfaces/IConsoleCommand";
-import { IHtmlCommand } from "../interfaces/IHtmlCommand";
-import { IMissionControlCommand } from "../interfaces/IMissionControlCommand";
 import { IReceiver } from "../interfaces/IReceiver";
 import { ISender } from "../interfaces/ISender";
 import { Interpretor } from "../interpretor/Interpretor";
+import { Rover } from "../rover/Rover";
+
 
 
 export class MissionControl {
@@ -16,7 +15,9 @@ export class MissionControl {
 	}
 
 	receive(message: string): void {
-		this.receiver.receiveFromRover();
+		const statut = this.receiver.receiveFromRover();
+
+		console.log("Ici on devrait l'envoyer à l'UI: J'ai reçu les informations Rover!!");
 	}
 	
 	interpretCommand(command: string): void {
@@ -24,6 +25,6 @@ export class MissionControl {
 		if (!isVerified) {
 			throw new Error('Command not recognized');
 		}
-		this.send(command);
+		this.sender.sendToRover(command);
 	}
 }
