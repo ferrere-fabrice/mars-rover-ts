@@ -31,4 +31,8 @@ export class Point{
     public DécrémenterLongitude() : Point {
         return new Point(this._latitude, this._longitude.Décrémenter());
     }
+
+    public Equals(other: Point) {
+        return other._latitude.Equals(this._latitude) && other._longitude.Equals(this._longitude);
+    }
 }
